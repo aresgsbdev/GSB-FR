@@ -77,7 +77,7 @@ class FicheFraisController extends AbstractController
 
         $quantites = $request->request->get('quantite');
         $fichiers = $request->files->get('files');
-        foreach ($quantites as  $idFraisForfait=>$qte){
+        foreach ($quantites as $idFraisForfait=>$qte){
             $ligneff = new LigneFraisForfait();
             $ligneff->setDateCreationLigneFraisForfait($dateNow);
             $ligneff->setQuantite($qte);

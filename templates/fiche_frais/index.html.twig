@@ -7,7 +7,6 @@
 <div class="container shadow-lg rounded">
 <div class="card-header" style ="text-align:center"><h1>Fiches de frais</h1></div>
 
-
 <a class="btn btn-outline-primary my-3 btn-lg" href="{{ path('fiche_frais_new') }}"><i class="fas fa-plus" style="color:;">&nbsp;&nbsp;</i>Créer une fiche de frais</a>
 
 <table class="table table-hover table-sm table-light shadow-lg display col-12" id="table">
@@ -16,6 +15,11 @@
             <td>Etat</td>
             <td>Nombre de justificatifs</td>
             <td>Date</td>
+
+            {% if is_granted("ROLE_COMPTABLE") %}
+                <td>Utilisateur</td>
+            {% endif %}
+            
         </tr>
     </thead>
     <tbody>
@@ -25,10 +29,12 @@
             <td>{{fichefrais.etatFicheFrais.libelle}}</td>
             <td>{{fichefrais.nbJustificatif}}</td>
             <td>{{fichefrais.dateFicheFrais|date('d/m/Y')}}</td> 
+            {% if is_granted("ROLE_COMPTABLE") %}
+                <td>{{fichefrais.utilisateurFicheFrais.nom}}</td>
+            {% endif %}
         </tr>
     {% endfor %}
     </tbody>
 </table>
 </div>
-
 {% endblock %}
