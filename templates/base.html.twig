@@ -26,6 +26,31 @@
         <link href="https://datatables.net/download/build/dataTables.responsive.nightly.css" rel="stylesheet" type="text/css" />
         <!-- fin DataTables -->
     {% endblock %}
+    {% block javascripts %}
+        {#{{ encore_entry_script_tags('app') }}#}
+        <!-- Bootstrap core JavaScript-->
+        <script src="{{ asset('sbadmin2/vendor/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="{{ asset('sbadmin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="{{ asset('sbadmin2/js/sb-admin-2.min.js') }}"></script>
+        <!-- Page level plugins -->
+        <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
+        <!-- Page level custom scripts -->
+        <script src="{{ asset('sbadmin2/js/demo/chart-area-demo.js') }}"></script>
+        <script src="{{ asset('sbadmin2/js/demo/chart-pie-demo.js') }}"></script>
+        <!--Debut DataTables  -->
+        <script type="text/javascript" src="https://cdn.datatables.net/w/bs4/dt-1.10.21/datatables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.21/sorting/date-eu.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.21/sorting/date-euro.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap4.min.js"></script>
+        <script src="https://datatables.net/download/build/dataTables.responsive.nightly.js"></script>
+        <!--Fin DataTables  -->
+    {% endblock %}
 </head>
 <body>
 
@@ -45,6 +70,29 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider">
+
+             <!-- Nav Item - User Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsefiche-frais"
+                   aria-expanded="true" aria-controls="collapsefiche-frais">
+                    <i class="fas fa-fw fa-fiche-frais"></i>
+                    <span>User</span>
+                </a>
+                <div id="collapsefiche-frais" class="collapse" aria-labelledby="headingfiche-frais"
+                     data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">User</h6>
+                        <a class="collapse-item" href="{{ path('user_index') }}">index</a>
+                        <a class="collapse-item" href="{{ path('user_new') }}">Nouvelle utilisateur</a>
+                        {# <a class="collapse-item" href="{{ path('user_show') }}">Voir utilisateur</a> #}
+                        {# <a class="collapse-item" href="{{ path('user_edit') }}">Modifier utilisateur</a> #}
+                        {# <a class="collapse-item" href="{{ path('user_contact') }}"></a> #}
+                        {# <a class="collapse-item" href="{{ path('user_contact_new') }}">Nouvelle Fiche de Frais Forfait</a> #}
+                        {# <a class="collapse-item" href="{{ path('user_form') }}">Nouvelle Fiche de Frais Forfait</a> #}
+                        {# <a class="collapse-item" href="{{ path('user_delete') }}">supprimer utilisateur</a> #}
+                    </div>
+                </div>
+            </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -88,11 +136,9 @@
                 <div id="collapsefiche-frais" class="collapse" aria-labelledby="headingfiche-frais"
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Messagerie:</h6>
+                        <h6 class="collapse-header">Fiche de Frais</h6>
                         <a class="collapse-item" href="{{ path('fiche_frais') }}">Liste des Fiches de Frais</a>
                         <a class="collapse-item" href="{{ path('fiche_frais_new') }}">Nouvelle Fiche de Frais Forfait</a>
-                        {# <a class="collapse-item" href="{{ path('fiche_frais_hors_forfait') }}">Liste des Fiches de Frais Hors Forfait</a>
-                        <a class="collapse-item" href="{{ path('fiche_frais_hors_forfait_new') }}">Nouvelle Fiche de Frais Hors Forfait</a> #}
                     </div>
                 </div>
             </li>
@@ -341,30 +387,5 @@
         </div>
     </div>
 {% endif %}
-    {% block javascripts %}
-        {#{{ encore_entry_script_tags('app') }}#}
-        <!-- Bootstrap core JavaScript-->
-        <script src="{{ asset('sbadmin2/vendor/jquery/jquery.min.js') }}"></script>
-        <script src="{{ asset('sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-        <!-- Core plugin JavaScript-->
-        <script src="{{ asset('sbadmin2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-        <!-- Custom scripts for all pages-->
-        <script src="{{ asset('sbadmin2/js/sb-admin-2.min.js') }}"></script>
-        <!-- Page level plugins -->
-        <script src="{{ asset('sbadmin2/vendor/chart.js/Chart.min.js') }}"></script>
-        <!-- Page level custom scripts -->
-        <script src="{{ asset('sbadmin2/js/demo/chart-area-demo.js') }}"></script>
-        <script src="{{ asset('sbadmin2/js/demo/chart-pie-demo.js') }}"></script>
-        <!--Debut DataTables  -->
-        <script type="text/javascript" src="https://cdn.datatables.net/w/bs4/dt-1.10.21/datatables.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.21/sorting/date-eu.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.21/sorting/date-euro.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap4.min.js"></script>
-        <script src="https://datatables.net/download/build/dataTables.responsive.nightly.js"></script>
-        <!--Fin DataTables  -->
-    {% endblock %}
 </body>
 </html>

@@ -44,36 +44,11 @@ class FicheFraisController extends AbstractController
     public function newFicheFrais(EntityManagerInterface $manager): Response
     {
         $fraisForfaits = $manager->getRepository(FraisForfait::class)->findAll();
+	$newFileName = tempnam(sys_get_temp_dir(), 'myAppNamespace');
         return $this->render('fiche_frais/new.html.twig', [
             'fraisForfaits' => $fraisForfaits
         ]);
     }
-
-    // /**
-    //  * @Route("/fiche/frais/hors/forfait", name="fiche_frais_hors_forfait")
-    //  */
-    // public function index(FicheFraisRepository $repo): Response
-    // {
-    //     $liste = $repo->findAll();
-
-    //     return $this->render('fiche_frais_hors_forfait/index.html.twig', [
-    //         'controller_name' => 'FicheFraisController',
-    //         'liste_fiche_frais' => $liste,
-    //     ]);
-    // }
-
-    // /**
-    //  * @Route("/fiche/frais/hors/forfait/new", name="fiche_frais_hors_forfait_new")
-    //  * @param EntityManagerInterface $manager
-    //  * @return Response
-    //  */
-    // public function newFicheFrais(EntityManagerInterface $manager): Response
-    // {
-    //     $fraisForfaits = $manager->getRepository(FraisForfait::class)->findAll();
-    //     return $this->render('fiche_frais_hors_forfait/new.html.twig', [
-    //         'fraisForfaits' => $fraisForfaits
-    //     ]);
-    // }
 
     /**
      * @Route("/fiche/frais/store", name="store_fiche_frais", methods={"GET","POST"})
@@ -98,15 +73,45 @@ class FicheFraisController extends AbstractController
         $manager->persist($ficheFrais);
         $manager->flush();
         $dateJustificatifs = $request->request->get('dateJustificatifs');
-        $quantites = $request->request->get('quantites');
-        $montants = $request->request->get('montants');
-        $forfaits = $request->request->get('forfaits');
+
+        $quantites = $request->request->get('quantite');
+	foreach ($quantites as  $idFraisForfait=>$qte){
+		$ligneff = new LigneFraisForfait();
+		$ligneff->setDateCreationLigneFraisForfait($dateNow);
+		$ligneff->setQuantite($qte);
+		$ligneff->setDateLigneFraisForfait($dateNow);
+		$ligneff->setUtilisateurLigneFraisForfait($user);
+		$ligneff->setFraisForfait($manager->getRepository(FraisForfait::class)->find($idFraisForfait));
+		$ligneff->setStatutLigneFraisForfait($manager->getRepository(StatutLigne::class)->findOneByLibelle("Saisie"));
+		$ligneff->setFicheFrais($ficheFrais);
+		$manager->persist($ligneff);
+		$manager->flush();
+	}
+
+	$libelleFhf = $request->request->get('libelleFhf');
+	$dateFhf = $request->request->get('dateFhf');
+	$justificatifFhf = $request->request->get('justificatifFhf');
+	$montantFhf = $request->request->get('montantFhf');
+	foreach ($montantFhf as $key=>$valeur){
+		$lignefhf = new LigneFraisHorsForfait();
+		$lignefhf->setDateCreationLigneFraisHorsForfait($dateNow);
+		$lignefhf->setMontant($valeur);
+		$lignefhf->setDateLigneFraisHorsForfait($dateFhf[$key]);
+		$lignefhf->setUtilisateurLigneFraisHorsForfait($user);
+		$lignefhf->setStatutLigneFraisHorsForfait($manager->getRepository(StatutLigne::class)->findOneByLibelle("Saisie"));
+		$lignefhf->setHorsClassification(false);
+		$lignefhf->setLibelle($libelleFhf[$key]);
+		$lignefhf->setFicheFrais($ficheFrais);
+                $manager->persist($lignefhf);
+                $manager->flush();
+	}
 
         foreach ($request->files->get('files') as $key => $file){
 
             $filesystem = new Filesystem();
 
             try {
+                $filesystem->mkdir(sys_get_temp_dir().'/'.random_int(0, 1000));
                 $filesystem->mkdir('uploads/tmp/');
                 $filesystem->mkdir('uploads/justificatif/');
             } catch (IOExceptionInterface $exception) {
@@ -123,7 +128,7 @@ class FicheFraisController extends AbstractController
             $justifacatif->setDateProductionJustificatif(DateTime::createFromFormat('Y-m-d', $dateJustificatifs[$key]));
             $justifacatif->setMontant($montants[$key]);
             $justifacatif->setUtilisateurJustificatif($user);
-            $manager->persist($justifacatif);
+            $manager->persist($justificatif);
             $manager->flush();
             $ligneFraisForfait = new LigneFraisForfait();
             $ligneFraisForfait->setDateCreationLigneFraisForfait($dateNow);
@@ -139,7 +144,6 @@ class FicheFraisController extends AbstractController
             $ficheFrais->setNbJustificatif($key + 1);
             $manager->flush();
         }
-
-        return $this->redirectToRoute('fiche_frais_new');
     }
+
 }
