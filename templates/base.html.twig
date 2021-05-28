@@ -73,23 +73,17 @@
 
              <!-- Nav Item - User Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsefiche-frais"
-                   aria-expanded="true" aria-controls="collapsefiche-frais">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
+                   aria-expanded="true" aria-controls="collapseUser">
                     <i class="fas fa-fw fa-fiche-frais"></i>
-                    <span>User</span>
+                    <span>Utilisateur</span>
                 </a>
-                <div id="collapsefiche-frais" class="collapse" aria-labelledby="headingfiche-frais"
+                <div id="collapseUser" class="collapse" aria-labelledby="headingUser"
                      data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">User</h6>
-                        <a class="collapse-item" href="{{ path('user_index') }}">index</a>
-                        <a class="collapse-item" href="{{ path('user_new') }}">Nouvelle utilisateur</a>
-                        {# <a class="collapse-item" href="{{ path('user_show') }}">Voir utilisateur</a> #}
-                        {# <a class="collapse-item" href="{{ path('user_edit') }}">Modifier utilisateur</a> #}
-                        {# <a class="collapse-item" href="{{ path('user_contact') }}"></a> #}
-                        {# <a class="collapse-item" href="{{ path('user_contact_new') }}">Nouvelle Fiche de Frais Forfait</a> #}
-                        {# <a class="collapse-item" href="{{ path('user_form') }}">Nouvelle Fiche de Frais Forfait</a> #}
-                        {# <a class="collapse-item" href="{{ path('user_delete') }}">supprimer utilisateur</a> #}
+                        <h6 class="collapse-header">Utilisateur</h6>
+                        <a class="collapse-item" href="{{ path('user_index') }}">Liste</a>
+                        <a class="collapse-item" href="{{ path('user_new') }}">Nouvel utilisateur</a>
                     </div>
                 </div>
             </li>
