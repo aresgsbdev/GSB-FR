@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use JMS\Serializer\Annotation\MaxDepth;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -80,26 +81,31 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=FicheFrais::class, mappedBy="utilisateurFicheFrais", orphanRemoval=true)
+     * @MaxDepth(0)
      */
     private $ficheFrais;
 
     /**
      * @ORM\OneToMany(targetEntity=Messagerie::class, mappedBy="utilisateurDestinataireMessagerie", orphanRemoval=true)
+     * @MaxDepth(0)
      */
     private $messageries;
 
     /**
      * @ORM\OneToMany(targetEntity=Justificatif::class, mappedBy="utilisateurJustificatif", orphanRemoval=true)
+     * @MaxDepth(0)
      */
     private $justificatifs;
 
     /**
      * @ORM\OneToMany(targetEntity=LigneFraisHorsForfait::class, mappedBy="utilisateurLigneFraisHorsForfait", orphanRemoval=true)
+     * @MaxDepth(0)
      */
     private $ligneFraisHorsForfaits;
 
     /**
      * @ORM\OneToMany(targetEntity=LigneFraisForfait::class, mappedBy="utilisateurLigneFraisForfait", orphanRemoval=true)
+     * @MaxDepth(0)
      */
     private $ligneFraisForfaits;
 

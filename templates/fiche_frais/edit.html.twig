@@ -5,6 +5,7 @@
 {% block body %}
 
     <div class="container shadow-lg rounded">
+
         <div class="card-header" style ="text-align:center"><h1>Modifier une fiche de frais</h1></div>
 
         <form action="{{ path('update_fiche_frais') }}" method="post" enctype="multipart/form-data">
@@ -154,4 +155,6 @@
             i = i + 1;
         });
     </script>
+
 {% endblock %}
+
