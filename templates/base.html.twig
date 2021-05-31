@@ -71,22 +71,26 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-             <!-- Nav Item - User Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
-                   aria-expanded="true" aria-controls="collapseUser">
-                    <i class="fas fa-fw fa-fiche-frais"></i>
-                    <span>Utilisateur</span>
-                </a>
-                <div id="collapseUser" class="collapse" aria-labelledby="headingUser"
-                     data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Utilisateur</h6>
-                        <a class="collapse-item" href="{{ path('user_index') }}">Liste</a>
-                        <a class="collapse-item" href="{{ path('user_new') }}">Nouvel utilisateur</a>
+            {% if is_granted("ROLE_ADMIN") %}
+
+                <!-- Nav Item - User Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
+                    aria-expanded="true" aria-controls="collapseUser">
+                        <i class="fas fa-fw fa-fiche-frais"></i>
+                        <span>Utilisateur</span>
+                    </a>
+                    <div id="collapseUser" class="collapse" aria-labelledby="headingUser"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Utilisateur</h6>
+                            <a class="collapse-item" href="{{ path('user_index') }}">Liste</a>
+                            <a class="collapse-item" href="{{ path('user_new') }}">Nouvel utilisateur</a>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+
+            {% endif %}
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -137,6 +141,7 @@
                 </div>
             </li>
         </ul>
+        
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->

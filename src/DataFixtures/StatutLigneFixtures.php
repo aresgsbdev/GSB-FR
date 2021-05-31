@@ -2,74 +2,75 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\StatutLigne;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class fichefraisFixtures extends Fixture
+class StatutLigneFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
         // $product = new Product();
         // $manager->persist($product);
 
-        $fichefrais = new FicheFrais();
-        $fichefrais->setLibelle("Saisie");
-        $manager->persist($ficheFrais);
+        $statutligne = new StatutLigne();
+        $statutligne->setLibelle("Saisie");
+        $manager->persist($statutligne);
         $manager->flush();
 
-        $fichefrais = new FicheFrais();
-	    $fichefrais->setLibelle("En attente");
-	    $manager->persist($fichefrais);
+        $statutligne = new StatutLigne();
+	    $statutligne->setLibelle("En attente");
+	    $manager->persist($statutligne);
         $manager->flush();
 
-        $fichefrais = new FicheFrais();
-        $fichefrais->setLibelle("Payé");
-        $manager->persist($fichefrais);
+        $statutligne = new StatutLigne();
+        $statutligne->setLibelle("Payé");
+        $manager->persist($statutligne);
         $manager->flush();
 
-        $fichefrais = new FicheFrais();
-        $fichefrais->setLibelle("Brouillon");
-        $manager->persist($fichefrais);
+        $statutligne = new StatutLigne();
+        $statutligne->setLibelle("Brouillon");
+        $manager->persist($statutligne);
         $manager->flush();
 
-        $fichefrais = new FicheFrais();
-        $fichefrais->setLibelle("Enregistré");
-        $manager->persist($fichefrais);
+        $statutligne = new StatutLigne();
+        $statutligne->setLibelle("Enregistré");
+        $manager->persist($statutligne);
         $manager->flush();
 
-        $fichefrais = new FicheFrais();
-        $fichefrais->setLibelle("Envoyé");
-        $manager->persist($fichefrais);
+        $statutligne = new StatutLigne();
+        $statutligne->setLibelle("Envoyé");
+        $manager->persist($statutligne);
         $manager->flush();
 
-        $fichefrais = new FicheFrais();
-        $fichefrais->setLibelle("Consulté");
-        $manager->persist($fichefrais);
+        $statutligne = new StatutLigne();
+        $statutligne->setLibelle("Consulté");
+        $manager->persist($statutligne);
         $manager->flush();
 
-        $fichefrais = new FicheFrais();
-        $fichefrais->setLibelle("Annulé");
-        $manager->persist($fichefrais);
+        $statutligne = new StatutLigne();
+        $statutligne->setLibelle("Annulé");
+        $manager->persist($statutligne);
         $manager->flush();
 
-        $fichefrais = new FicheFrais();
-        $fichefrais->setLibelle("En paiement");
-        $manager->persist($fichefrais);
+        $statutligne = new StatutLigne();
+        $statutligne->setLibelle("En paiement");
+        $manager->persist($statutligne);
         $manager->flush();
 
-        $fichefrais = new FicheFrais();
-        $fichefrais->setLibelle("Rapproché");
-        $manager->persist($fichefrais);
+        $statutligne = new StatutLigne();
+        $statutligne->setLibelle("Rapproché");
+        $manager->persist($statutligne);
         $manager->flush();
 
-        $fichefrais = new FicheFrais();
-        $fichefrais->setLibelle("Refusée");
-        $manager->persist($fichefrais);
+        $statutligne = new StatutLigne();
+        $statutligne->setLibelle("Refusée");
+        $manager->persist($statutligne);
         $manager->flush();
 
-        $fichefrais = new FicheFrais();
-        $fichefrais->setLibelle("Validée");
-        $manager->persist($fichefrais);
+        $statutligne = new StatutLigne();
+        $statutligne->setLibelle("Validée");
+        $manager->persist($statutligne);
         $manager->flush();
 
         $manager->flush();

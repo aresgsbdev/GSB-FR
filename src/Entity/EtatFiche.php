@@ -59,22 +59,22 @@ class EtatFiche
         return $this->ficheFrais;
     }
 
-    public function addFicheFrai(FicheFrais $ficheFrai): self
+    public function addFicheFrais(FicheFrais $ficheFrais): self
     {
-        if (!$this->ficheFrais->contains($ficheFrai)) {
-            $this->ficheFrais[] = $ficheFrai;
-            $ficheFrai->setEtatFicheFrais($this);
+        if (!$this->ficheFrais->contains($ficheFrais)) {
+            $this->ficheFrais[] = $ficheFrais;
+            $ficheFrais->setEtatFicheFrais($this);
         }
 
         return $this;
     }
 
-    public function removeFicheFrai(FicheFrais $ficheFrai): self
+    public function removeFicheFrais(FicheFrais $ficheFrais): self
     {
-        if ($this->ficheFrais->removeElement($ficheFrai)) {
+        if ($this->ficheFrais->removeElement($ficheFrais)) {
             // set the owning side to null (unless already changed)
-            if ($ficheFrai->getEtatFicheFrais() === $this) {
-                $ficheFrai->setEtatFicheFrais(null);
+            if ($ficheFrais->getEtatFicheFrais() === $this) {
+                $ficheFrais->setEtatFicheFrais(null);
             }
         }
 
