@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail{% endblock %}
+
+{% block body %}
+
+<div class="container bg-light mb-3">
+  <div class="card-header">
+  <h1>Détail de la fiche de frais</h1>
+  </div>
+  	<div class="card-body">
+
+  <ul class="list-group">
+    <li class="list-group-item">{{ficheFrais.utilisateurFicheFrais.nom|upper}} {{ficheFrais.utilisateurFicheFrais.prenom|capitalize}}</li>
+    <li class="list-group-item">Date de la fiche de frais : {{ficheFrais.dateFicheFrais|date("d/m/Y")}}</li>
+    <li class="list-group-item">Date de création : {{ficheFrais.dateCreationFicheFrais|date("d/m/Y")}}</li>
+    <li class="list-group-item">Date de modification : {{ficheFrais.dateModificationFicheFrais|date("d/m/Y")}}</li>
+    <li class="list-group-item">Etat : {% if is_granted('ROLE_COMPTABLE') %}
+            <select>
+              <option value="">--Choisir un état--</option>
+            </select>
+          {% else %}
+                {{ficheFrais.etatFicheFrais.libelle }}
+          {% endif %}</li>
+  </ul>
+      <br> 
+   <h5 class="text-center">Lignes Frais Forfaits</h5>
+   <table class="table table-hover table-sm table-light shadow-lg display col-12 my-2" id="table">
+    <thead class="thead-light">
+        
+      <tr>
+        <th>
+        Frais Forfait
+        </th>
+        <th>
+        Statut
+        </th>
+        <th>
+        Date des frais
+        </th>
+        <th>
+        Date de création
+        </th>
+        <th>
+        Quantité
+        </th>
+      </tr>
+    </thead>
+   <tbody>
+   {% for item in ficheFrais.ligneFraisForfaits %}
+    <tr>
+        <td>{{item.fraisForfait.libelle}}</td>
+        <td>
+          {% if is_granted('ROLE_COMPTABLE') %}
+            <select name="">
+            <option value="">--Choisir un statut--</option>
+            </select>
+          {% else %}
+                {{item.statutLigneFraisForfait.libelle}}
+          {% endif %}
+        </td>
+        <td>{{item.dateLigneFraisForfait|date("d/m/Y")}}</td>
+        <td>{{item.dateCreationLigneFraisForfait|date("d/m/Y")}}</td>
+        <td>{{item.quantite}}</td>
+        
+     </tr>   
+   {% endfor %}
+</tbody>
+   </table>
+
+   <br> 
+   <h5 class="text-center">Lignes Frais Hors Forfaits</h5>
+   <table class="table table-hover table-sm table-light shadow-lg display col-12 my-2" id="table">
+
+   <thead class="thead-light">
+  <tr>
+    <th>
+    Libellé
+    </th>
+    <th>
+    Statut
+    </th>
+    <th>
+    Date des frais
+    </th>
+    <th>
+    Date de création
+    </th>
+    <th>
+    Montant
+    </th>
+  </tr>
+   </thead>
+   <tbody>
+
+
+
+
+   {% for item in ficheFrais.ligneFraisHorsForfaits %}
+    
+    <tr>
+        <td>{{item.libelle}}</td>
+        <td>
+          {% if is_granted('ROLE_COMPTABLE') %}
+            <select>
+              <option value="" id="statut-select">--Choisir un statut--</option>
+              {% for item in ficheFrais.etatFicheFrais %}
+                <tr>
+                <td>{{item.statutLigneFraisHorsForfait.libelle}}</td>
+              {% endfor %}
+            </select>
+          {% else %}
+                {{item.statutLigneFraisHorsForfait.libelle}}
+          {% endif %}
+        </td>
+        <td>{{item.dateLigneFraisHorsForfait|date("d/m/Y")}}</td>
+        <td>{{item.dateCreationLigneFraisHorsForfait|date("d/m/Y")}}</td>
+        <td>{{item.montant}}</td>
+    </tr>   
+
+   {% endfor %}
+   </tbody>
+
+   </table>
+	</div>
+</div>
+					
+				
+			
+{% endblock %}

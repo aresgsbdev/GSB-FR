@@ -6,6 +6,7 @@ use App\Repository\FicheFraisRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * @ORM\Entity(repositoryClass=FicheFraisRepository::class)
@@ -22,12 +23,14 @@ class FicheFrais
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="ficheFrais")
      * @ORM\JoinColumn(nullable=false)
+     * @MaxDepth(1)
      */
     private $utilisateurFicheFrais;
 
     /**
      * @ORM\ManyToOne(targetEntity=EtatFiche::class, inversedBy="ficheFrais")
      * @ORM\JoinColumn(nullable=false)
+     * @MaxDepth(1)
      */
     private $etatFicheFrais;
 
@@ -53,11 +56,13 @@ class FicheFrais
 
     /**
      * @ORM\OneToMany(targetEntity=LigneFraisForfait::class, mappedBy="ficheFrais", orphanRemoval=true)
+     * @MaxDepth(1)
      */
     private $ligneFraisForfaits;
 
     /**
      * @ORM\OneToMany(targetEntity=LigneFraisHorsForfait::class, mappedBy="ficheFrais", orphanRemoval=true)
+     * @MaxDepth(1)
      */
     private $ligneFraisHorsForfaits;
 

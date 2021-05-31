@@ -35,6 +35,17 @@ class FicheFraisController extends AbstractController
             'liste_fiche_frais' => $liste,
         ]);
     }
+  
+    /**
+     * @Route("/fiche/frais/{id}", name="fiche_frais_detail")
+     */
+    public function detailFiche(FicheFrais $id)
+    {
+        return $this->render(
+            'fiche_frais/detail.html.twig', [
+                'ficheFrais' =>$id
+        ]);
+    }
 
     /**
      * @Route("/fiche/frais/new", name="fiche_frais_new")
@@ -44,12 +55,12 @@ class FicheFraisController extends AbstractController
     public function newFicheFrais(EntityManagerInterface $manager): Response
     {
         $fraisForfaits = $manager->getRepository(FraisForfait::class)->findAll();
-	$newFileName = tempnam(sys_get_temp_dir(), 'myAppNamespace');
+	      $newFileName = tempnam(sys_get_temp_dir(), 'myAppNamespace');
         return $this->render('fiche_frais/new.html.twig', [
             'fraisForfaits' => $fraisForfaits
         ]);
     }
-
+  
     /**
      * @Route("/fiche/frais/store", name="store_fiche_frais", methods={"GET","POST"})
      * @param EntityManagerInterface $manager

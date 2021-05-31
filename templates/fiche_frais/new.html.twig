@@ -60,12 +60,76 @@
 							</div>
 						</div>
 					</div>
-
 					<button type="submit" class="btn btn-info">Enregistrer</button>
 				</div>
 			</form>
+
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		var i = 1000;
+		let togg1 = document.getElementById("togg1");
+
+		togg1.addEventListener("click", () => {
+			//get tbody
+			var refTable = document.getElementById("tbodyFHF");
+			//insert Row
+			var nouvelleLigne = refTable.insertRow(-1);
+			//insert Cells x4
+			var nouvelleCell1 = nouvelleLigne.insertCell(-1);
+			var nouvelleCell2 = nouvelleLigne.insertCell(-1);
+			var nouvelleCell3 = nouvelleLigne.insertCell(-1);
+			var nouvelleCell4 = nouvelleLigne.insertCell(-1);
+			var nouvelleCell5 = nouvelleLigne.insertCell(-1);
+			//HTML de chaque cellule en JS (non cellule + innerhtml)
+			//nouvelleCell1.innerHTML = "<input type='text' class='form-control' id='FHF["+i+"]' name'FHF["+i+"]' />";
+			//nouvelleCell2.innerHTML = "<input type='date' class='form-control' id='Date["+i+"]' name'Date' />";
+			//nouvelleCell3.innerHTML = "<input type='file' class='form-control-file' id='Justificatif["+i+"]' name'Justificatif' />";
+			//nouvelleCell4.innerHTML = "<input type='text' class='form-control' id='Montant["+i+"]' name'Montant' />";
+
+			var input1 = document.createElement('input');
+			input1.setAttribute("type", "text");
+			input1.setAttribute("id", "libelleFhf['"+i+"']");
+			input1.setAttribute("name", "libelleFhf['"+i+"']");
+			input1.setAttribute("class", "form-control");
+			nouvelleCell1.appendChild(input1);
+
+			var input2 = document.createElement('input');
+			input2.setAttribute("type", "date");
+			input2.setAttribute("id", "dateFhf['"+i+"']");
+			input2.setAttribute("name", "dateFhf['"+i+"']");
+			input2.setAttribute("class", "form-control");
+			nouvelleCell2.appendChild(input2);
+
+			var input3 = document.createElement('input');
+			input3.setAttribute("type", "file");
+			input3.setAttribute("id", "justificatifFhf['"+i+"']");
+			input3.setAttribute("name", "justificatifFhf['"+i+"']");
+			input3.setAttribute("class", "form-control-file");
+			nouvelleCell3.appendChild(input3);
+
+			var input4 = document.createElement('input');
+			input4.setAttribute("type", "date");
+			input4.setAttribute("id", "dateJustificatifsFhf['"+i+"']");
+			input4.setAttribute("name", "dateJustificatifsFhf['"+i+"']");
+			input4.setAttribute("class", "form-control");
+			nouvelleCell4.appendChild(input4);
+
+			var input5 = document.createElement('input');
+			input5.setAttribute("type", "number");
+			input5.setAttribute("id", "montantFhf['"+i+"']");
+			input5.setAttribute("name", "montantFhf['"+i+"']");
+			input5.setAttribute("class", "form-control");
+			nouvelleCell5.appendChild(input5);
+
+			i = i + 1;
+		});
+	</script>
+{% endblock %}
+
+{% block javascripts%}
+{{parent()}}
 
 	<script type="text/javascript">
 		var i = 1000;

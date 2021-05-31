@@ -37,6 +37,36 @@ class ApiPostController extends AbstractController
 
         return JsonResponse::fromJsonString($serializer->serialize($data, 'json'));
     }
+  
+      /**
+     * @Route("/api/fiche/frais/list/{id}", name="api_fiche_frais_list")
+     */
+    public function apiListFicheFrais(FicheFraisRepository $ficheFraisRepository,User $user)
+    {
+        if (in_array("ROLE_ADMIN", $user->getRoles()) || in_array("ROLE_SUPER_ADMIN", $user->getRoles()) || in_array("ROLE_COMPTABLE", $user->getRoles()) ) {
+
+            $data = $ficheFraisRepository->findAll();
+        } else  {
+            $data = $ficheFraisRepository->findByUtilisateurFicheFrais($user);
+        }
+        
+        $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
+        $serializer->serialize($data, 'json');
+
+        return JsonResponse::fromJsonString($serializer->serialize($data, 'json'));
+    }
+  
+      /**
+     * @Route("/api/fiche/frais/detail/{id}", name="api_fiche_frais_detail")
+     */
+    public function apiDetailFicheFrais(FicheFrais $ficheFrais)
+    {
+        
+        $serializer = \JMS\Serializer\SerializerBuilder::create()->build();
+        $serializer->serialize($ficheFrais, 'json');
+
+        return JsonResponse::fromJsonString($serializer->serialize($ficheFrais, 'json'));
+    }
 
     /**
      * @Route("/api/user/data/{id}", name="api_user_data")
@@ -145,3 +175,5 @@ class ApiPostController extends AbstractController
         return JsonResponse::fromJsonString($serializer->serialize($fichefrais, 'json'));
     }
 }
+
+
