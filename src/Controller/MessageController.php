@@ -66,7 +66,7 @@ class MessageController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="message_show", methods={"GET"})
+     * @Route("/show/{id}", name="message_show", methods={"GET"})
      */
     public function show(Messagerie $message): Response
     {
